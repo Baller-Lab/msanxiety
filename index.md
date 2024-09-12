@@ -6,34 +6,33 @@
 ### Project Lead
 Erica B. Baller
 
-### Faculty Leads
+### Senior Faculty Leads
 Theodore D. Satterthwaite and Russell T. Shinohara
 
 ### Brief Project Description:
-371 participants with MS were included(MS+noA=99; MS+mildA=249; MS+severeA=23). Lesions from research-grade clinical scans were segmented with MIMoSA and normalized to the HCP template. Streamline filtering was performed in DSI studio to generate measures of the degree of fascicle impact by lesions. Disease burden between MS+noA and MS+severeA in uncinate were compared, as well as parametric load of anxiety burden with uncinate burden.
+373 participants with MS were included(MS+noA=99; MS+mildA=249; MS+severeA=24). Lesions from research-grade clinical scans were segmented with MIMoSA and normalized to the HCP template. Streamline filtering was performed in DSI studio to generate measures of the degree of fascicle impact by lesions. Disease burden between MS+noA and MS+severeA in uncinate were compared, as well as parametric load of anxiety burden with uncinate burden.
 
 ### Analytic Replicator:
 Audrey Luo
 
-### Collaborators:
-Erica B. Baller, M.D., M.S., Audrey Luo, B.A., Matthew C. Cieslak, Ph.D., Elena C. Cooper, B.A., Matthew K. Schindler, M.D., Ph.D., Amit Bar-Or, M.D., Clyde E. Markowitz, Melissa Martin, B.A., Victoria Rautman, Donovan Reid, Russell T. Shinohara, Ph.D.^, Theodore D. Satterthwaite, M.D., M.A.^
+### Authors/Collaborators:
+Erica B. Baller, M.D., M.S.a,b, Audrey Luo, B.A.a,b, Matthew K. Schindler, M.D., Ph.D.c,d, Elena C. Cooper, B.A.a,b, Margaret K. Pecsok, A.B.a, Matthew C. Cieslak, Ph.D.a,b, Melissa L. Martin, M.S.e, Amit Bar-Or, M.D.c,d, Ameena Elahi, B.A.f, Clyde E. Markowitz, M.D.c,d, Christopher M. Perrone M.D.c,d, Victoria Rautman, B.A.f, Donovan Reidh, Bailey Spangler, B.A.e, Theodore D. Satterthwaite, M.D., M.A.a,b,h^, Russell T. Shinohara, Ph.D.e,h^
 ^shared last author
 
 ### Project Start Date:
 7/2024
 
 ### Current Project Status:
-In progress
+Completed
 
 ### Dataset:
-Multiple Sclerosis Cohort (Melissa Martin's Mimosa, EMR data pull 10/28/2023)
+Multiple Sclerosis Cohort (Melissa Martin's Mimosa (2010-2018), EMR data pull 10/28/2023)
 
 ### Github repo:
-[https://github.com/ballere/msanxiety/](https://github.com/ballere/msanxiety/tree/main/scripts)
+[https://github.com/PennLINC/msanxiety/](https://github.com/PennLINC/msanxiety)
 
 ### Website
-TBD, update below
-[https://pennlinc.github.io/msdepression/](https://pennlinc.github.io/msdepression/)
+[https://pennlinc.github.io/msanxiety/](https://pennlinc.github.io/msanxiety/)
 
 ### Slack Channel:
 #msdepression
@@ -61,17 +60,17 @@ MS Proviers (local computer)
      
 Medication information: 
      
-[birth_control_est_prog_doses](https://github.com/ballere/msanxiety/tree/main/medication_data/BCP_est_and_prog_levels_and_doses_all_brands.csv)
+[birth_control_est_prog_doses](https://github.com/PennLINC/msanxiety/tree/main/medication_data/BCP_est_and_prog_levels_and_doses_all_brands.csv)
      
-[ms_medications_brand_and_generic](https://github.com/ballere/msanxiety/tree/main/medication_data/ms_medications_brand_and_generic.csv) 
+[ms_medications_brand_and_generic](https://github.com/PennLINC/msanxiety/tree/main/medication_data/ms_medications_brand_and_generic_cleaned.csv) 
 
-[nami_psych_meds](https://github.com/ballere/msanxiety/tree/main/medication_data/nami_psych_meds_antidepressants_plus_gabapentin_and_amitriptyline_benzos_beta_blockers.csv)
+[nami_psych_meds](https://github.com/PennLINC/msanxiety/tree/main/medication_data/nami_psych_meds_antidepressants_plus_gabapentin_and_amitriptyline_benzos_beta_blockers.csv)
 
-[antianxiety_medications](https://github.com/ballere/msanxiety/tree/main/medication_data/antianxiety_medications.csv)
+[antianxiety_medications](https://github.com/PennLINC/msanxiety/tree/main/medication_data/antianxiety_medications.csv)
 
 ICD Codes:
 
-[icd10_data](https://github.com/ballere/msanxiety/tree/main/icd10_data/F-codes_01-99.csv)
+[icd10_data](https://github.com/PennLINC/msanxiety/tree/main/icd10_data/F-codes_01-99.csv)
 
 Subject imaging data (cluster): 
 
@@ -121,7 +120,7 @@ HCP template:
 <br>
 
 ### * Functions for project *
-[ms_functions.R](https://github.com/ballere/msanxiety/tree/main/scripts/FINAL_scripts_clean/ms_functions.R)
+[ms_functions.R](https://github.com/PennLINC/msanxiety/tree/main/scripts/FINAL_scripts_clean/ms_functions.R)
 
 ### Sample Construction
 
@@ -129,7 +128,7 @@ We first constructed our sample from n=890 individuals who were diagnosed with m
 
 The following code takes the n=890 sample, and goes through a variety of exclusions to get the final n. Specifically, after excluding 78 participants with poor mimosa quality (23) or streamline filtering (55), 812 participants were eligible for anxiety classification.  Participants with MS were identified from the electronic medical record and stratified into three age- and sex-matched groups: 1) MS without anxiety (MS+noA); 2) MS with mild anxiety (MS+mildA), 3) MS with severe anxiety (MS+severeA). MS+noA included persons who had no psychiatric diagnosis, took no psychiatric medications, and were asymptomatic on PHQ 2/9 (n = 99, age (SD) = 49.4 (11.7), % female = 75). MS+mildA included persons with either a diagnosis of an anxiety disorder (F40*) or a prescription for an anti-anxiety medication (n = 249, age (SD) = 47.1 (11.1), % female = 82). MS+severeA included persons who had both an anxiety disorder and were taking an anti-anxiety medication (n = 23, age (SD) = 47.1 (12.4), % female = 78).
 
-[clean_dac_pull_icd10_codes_and_make_clean_df_post_replication.R](https://github.com/ballere/msanxiety/tree/main/scripts/FINAL_scripts_clean/clean_dac_pull_icd10_codes_and_make_clean_df_post_replication.R)
+[clean_dac_pull_icd10_codes_and_make_clean_df_post_replication.R](https://github.com/PennLINC/msanxiety/tree/main/scripts/FINAL_scripts_clean/clean_dac_pull_icd10_codes_and_make_clean_df_post_replication.R)
 
 ### Automated white matter lesion segmentation
 
@@ -152,7 +151,7 @@ For more details, please see [https://pennlinc.github.io/msdepression/](https://
 
 This script is run locally, on R. It does all second level/group data analysis. Main steps summarized below.
 
-[MSAnxiety_manuscript_post_replication_prop_FINAL.Rmd](https://github.com/ballere/msanxiety/tree/main/scripts/FINAL_scripts_clean/MSAnxiety_manuscript_post_replication_prop_FINAL.Rmd)
+[MSAnxiety_manuscript_post_replication_prop_FINAL.Rmd](https://github.com/PennLINC/msanxiety/tree/main/scripts/FINAL_scripts_clean/MSAnxiety_manuscript_FINAL_20240911.Rmd)
 
 
 #### Disease burden summary measures
