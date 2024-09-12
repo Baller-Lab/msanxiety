@@ -10,7 +10,7 @@ Erica B. Baller
 Theodore D. Satterthwaite and Russell T. Shinohara
 
 ### Brief Project Description:
-373 participants with MS were included(MS+noA=99; MS+mildA=249; MS+severeA=24). Lesions from research-grade clinical scans were segmented with MIMoSA and normalized to the HCP template. Streamline filtering was performed in DSI studio to generate measures of the degree of fascicle impact by lesions. Disease burden between MS+noA and MS+severeA in uncinate were compared, as well as parametric load of anxiety burden with uncinate burden.
+373 participants with MS were included(MS+noA=99; MS+mildA=249; MS+severeA=24). Lesions from research-grade clinical scans were segmented with MIMoSA and normalized to the HCP template. Streamline filtering was performed in DSI studio to generate measures of the degree of fascicle impact by lesions. Disease burden between MS+noA and MS+severeA in uncinate were compared, as well as parametric load of anxiety burden (also referred to as anxiety dose or anxiety severity) with uncinate burden.
 
 ### Analytic Replicator:
 Audrey Luo
@@ -126,7 +126,7 @@ HCP template:
 
 We first constructed our sample from n=890 individuals who were diagnosed with multiple sclerosis by a Multiple Sclerosis provider and received their clinical scans at the University of Pennsylvania. 
 
-The following code takes the n=890 sample, and goes through a variety of exclusions to get the final n. Specifically, after excluding 78 participants with poor mimosa quality (23) or streamline filtering (55), 812 participants were eligible for anxiety classification.  Participants with MS were identified from the electronic medical record and stratified into three age- and sex-matched groups: 1) MS without anxiety (MS+noA); 2) MS with mild anxiety (MS+mildA), 3) MS with severe anxiety (MS+severeA). MS+noA included persons who had no psychiatric diagnosis, took no psychiatric medications, and were asymptomatic on PHQ 2/9 (n = 99, age (SD) = 49.4 (11.7), % female = 75). MS+mildA included persons with either a diagnosis of an anxiety disorder (F40*) or a prescription for an anti-anxiety medication (n = 249, age (SD) = 47.1 (11.1), % female = 82). MS+severeA included persons who had both an anxiety disorder and were taking an anti-anxiety medication (n = 23, age (SD) = 47.1 (12.4), % female = 78).
+The following code takes the n=825 sample, and goes through a variety of exclusions to get the final n. Specifically, after excluding 11 participants with poor mimosa quality (23) or streamline filtering (55), 814 participants were eligible for anxiety classification.  Participants with MS were identified from the electronic medical record and stratified into three age- and sex-matched groups: 1) MS without anxiety (MS+noA); 2) MS with mild anxiety (MS+mildA), 3) MS with severe anxiety (MS+severeA). MS+noA included persons who had no psychiatric diagnosis, took no psychiatric medications, and were asymptomatic on PHQ 2/9 (n = 99, age (SD) = 49.4 (11.7), % female = 75). MS+mildA included persons with either a diagnosis of an anxiety disorder (F40*) or a prescription for an anti-anxiety medication (n = 249, age (SD) = 47.1 (11.1), % female = 82). MS+severeA included persons who had both an anxiety disorder and were taking an anti-anxiety medication (n = 24, age (SD) = 47.0 (12.2), % female = 79).
 
 [clean_dac_pull_icd10_codes_and_make_clean_df_post_replication.R](https://github.com/PennLINC/msanxiety/tree/main/scripts/FINAL_scripts_clean/clean_dac_pull_icd10_codes_and_make_clean_df_post_replication.R)
 
@@ -139,13 +139,11 @@ Valcarcel AM, Linn KA, Vandekar SN, Satterthwaite TD, Muschelli J, Calabresi PA,
 ### Streamline Filtering 
 Streamline filtering is an interative process performed in DSI studio. HCP template fib file can be found here [dsistudio Download: HCP1065 1-mm FIB file](https://brain.labsolver.org/hcp_template.html). Template is based on [HCP 2009a asymmetric](https://www.bic.mni.mcgill.ca/~vfonov/icbm/2009/).
 
-For each individual, the MIMoSA binary map was considered a region of interest. For the fascicles of interest (uncinate, fornix), streamlines that ran through the lesion were "filtered" or kept, whereas the streamlines that avoided the MIMoSA mask were eliminated. Streamlines that passed through the MIMoSA map were then saved binary .nii files, where 1 indicated that disease was present in that voxel, and 0 indicated either 1) that fascicle did not cross through that voxel or 2) there was no disease in it. 
+For each individual, the MIMoSA binary map was considered a region of interest. For the fascicles of interest (uncinate), streamlines that ran through the lesion were "filtered" or kept, whereas the streamlines that avoided the MIMoSA mask were eliminated. Streamlines that passed through the MIMoSA map were then saved binary .nii files, where 1 indicated that disease was present in that voxel, and 0 indicated either 1) that fascicle did not cross through that voxel or 2) there was no disease in it. 
   
-I was then able to calculate the "volume" of the disease in a fascicle (i.e. volume of the streamlines that were affected) by summing the # of 1s in the map. At the end, each individual had single values that represented the volume of affected streamlines within each fascicle.
+I was then able to calculate the proportion of the disease in the uncinate fasciculus (i.e. volume of the streamlines that were affected) by summing the # of 1s in the map, meaning the right and left side, and dividing it by the total volume of streamlines in the canonical UF. At the end, each individual had single values that represented the proportion of lesion burden in the UF.
   
-Full fascicle volumes were also calculated and saved as .niis. 
-
-For more details, please see [https://pennlinc.github.io/msdepression/](https://pennlinc.github.io/msdepression/), published in Baller EB, Sweeney EM, Cieslak M, Robert-Fitzgerald T, Covitz SC, Martin ML, Schindler MK, Bar-Or A, Elahi A, Larsen BS, Manning AR, Markowitz CE, Perrone CM, Rautman V, Seitz MM, Detre JA, Fox MD, Shinohara RT, Satterthwaite TD. Mapping the Relationship of White Matter Lesions to Depression in Multiple Sclerosis. Biol Psychiatry. 2024 Jun 15;95(12):1072-1080. [doi: 10.1016/j.biopsych.2023.11.010](10.1016/j.biopsych.2023.11.010). Epub 2023 Nov 18. PMID: 37981178; PMCID: PMC11101593.
+For more details on streamline filtering, please see [https://pennlinc.github.io/msdepression/](https://pennlinc.github.io/msdepression/), published in Baller EB, Sweeney EM, Cieslak M, Robert-Fitzgerald T, Covitz SC, Martin ML, Schindler MK, Bar-Or A, Elahi A, Larsen BS, Manning AR, Markowitz CE, Perrone CM, Rautman V, Seitz MM, Detre JA, Fox MD, Shinohara RT, Satterthwaite TD. Mapping the Relationship of White Matter Lesions to Depression in Multiple Sclerosis. Biol Psychiatry. 2024 Jun 15;95(12):1072-1080. [doi: 10.1016/j.biopsych.2023.11.010](10.1016/j.biopsych.2023.11.010). Epub 2023 Nov 18. PMID: 37981178; PMCID: PMC11101593.
 
 ### Final group level analysis
 
@@ -170,9 +168,9 @@ A gam with mean_UF_vol as dependent variable, modeling main effect of anxiety do
      gam(mean_UF_vol ~ anxiety_dose + osex + s(PAT_AGE_AT_EXAM, k = 4, fx = F), data=df_demo_and_fascicles_no_unclass_anxiety_dose)
 
 #### Sensitivity analyses
-As a comparison, I also looked specifically at fornix, which is another subcortical fiber connecting medial prefrontal and medial temporal lobe (anterior cingulate/hippocampus), primarily involved in cognition/memory, rather than anxiety (N.S.) 
+As a comparison, I also looked specifically at fornix, which is another subcortical fiber connecting prefrontal and medial temporal lobe (anterior cingulate/hippocampus), primarily involved in cognition/memory, rather than anxiety (N.S.) 
 
-     gam(mean_fornix_volume ~ anxiety_dose + osex + s(PAT_AGE_AT_EXAM, k = 4, fx = T), data=df_demo_and_fascicles_no_unclass_anxiety_dose)
+     gam(mean_fornix_volume ~ anxiety_dose + osex + s(PAT_AGE_AT_EXAM, k = 4, fx = F), data=df_demo_and_fascicles_no_unclass_anxiety_dose)
 
 To test whether this was specific to anxiety diagnosis and did not simply reflect general internalizing symptoms, I also evaluated mean uncinate volume in patients with MS+Depression (199) or MS+noDep (99) in this cohort (N.S.) 
      
