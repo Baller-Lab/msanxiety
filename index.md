@@ -29,7 +29,7 @@ Completed
 Multiple Sclerosis Cohort (Melissa Martin's Mimosa (2010-2018), EMR data pull 10/28/2023)
 
 ### Github repo:
-[https://github.com/Baller-Lab/msanxiety/](https://github.com/PennLINC/msanxiety)
+[https://github.com/Baller-Lab/msanxiety/](https://github.com/Baller-Lab/msanxiety)
 
 ### Website
 [https://Baller-Lab.github.io/msanxiety/](https://Baller-Lab.github.io/msanxiety/)
