@@ -32,7 +32,7 @@ Multiple Sclerosis Cohort (Melissa Martin's Mimosa (2010-2018), EMR data pull 10
 [https://github.com/PennLINC/msanxiety/](https://github.com/PennLINC/msanxiety)
 
 ### Website
-[https://pennlinc.github.io/msanxiety/](https://pennlinc.github.io/msanxiety/)
+[https://Baller-Lab.github.io/msanxiety/](https://Baller-Lab.github.io/msanxiety/)
 
 ### Slack Channel:
 #msdepression
@@ -60,17 +60,17 @@ MS Proviers (local computer)
      
 Medication information: 
      
-[birth_control_est_prog_doses](https://github.com/PennLINC/msanxiety/tree/main/medication_data/BCP_est_and_prog_levels_and_doses_all_brands.csv)
+[birth_control_est_prog_doses](https://github.com/Baller-Lab/msanxiety/tree/main/medication_data/BCP_est_and_prog_levels_and_doses_all_brands.csv)
      
-[ms_medications_brand_and_generic](https://github.com/PennLINC/msanxiety/tree/main/medication_data/ms_medications_brand_and_generic_cleaned.csv) 
+[ms_medications_brand_and_generic](https://github.com/Baller-Lab/msanxiety/tree/main/medication_data/ms_medications_brand_and_generic_cleaned.csv) 
 
-[nami_psych_meds](https://github.com/PennLINC/msanxiety/tree/main/medication_data/nami_psych_meds_antidepressants_plus_gabapentin_and_amitriptyline_benzos_beta_blockers.csv)
+[nami_psych_meds](https://github.com/Baller-Lab/msanxiety/tree/main/medication_data/nami_psych_meds_antidepressants_plus_gabapentin_and_amitriptyline_benzos_beta_blockers.csv)
 
-[antianxiety_medications](https://github.com/PennLINC/msanxiety/tree/main/medication_data/antianxiety_medications.csv)
+[antianxiety_medications](https://github.com/Baller-Lab/msanxiety/tree/main/medication_data/antianxiety_medications.csv)
 
 ICD Codes:
 
-[icd10_data](https://github.com/PennLINC/msanxiety/tree/main/icd10_data/F-codes_01-99.csv)
+[icd10_data](https://github.com/Baller-Lab/msanxiety/tree/main/icd10_data/F-codes_01-99.csv)
 
 Subject imaging data (cluster): 
 
@@ -120,7 +120,7 @@ HCP template:
 <br>
 
 ### * Functions for project *
-[ms_functions.R](https://github.com/PennLINC/msanxiety/tree/main/scripts/FINAL_scripts_clean/ms_functions.R)
+[ms_functions.R](https://github.com/Baller-Lab/msanxiety/tree/main/scripts/FINAL_scripts_clean/ms_functions.R)
 
 ### Sample Construction
 
@@ -128,7 +128,7 @@ We first constructed our sample from n=890 individuals who were diagnosed with m
 
 The following code takes the n=825 sample, and goes through a variety of exclusions to get the final n. Specifically, after excluding 11 participants with poor mimosa quality (23) or streamline filtering (55), 814 participants were eligible for anxiety classification.  Participants with MS were identified from the electronic medical record and stratified into three age- and sex-matched groups: 1) MS without anxiety (MS+noA); 2) MS with mild anxiety (MS+mildA), 3) MS with severe anxiety (MS+severeA). MS+noA included persons who had no psychiatric diagnosis, took no psychiatric medications, and were asymptomatic on PHQ 2/9 (n = 99, age (SD) = 49.4 (11.7), % female = 75). MS+mildA included persons with either a diagnosis of an anxiety disorder (F40*) or a prescription for an anti-anxiety medication (n = 249, age (SD) = 47.1 (11.1), % female = 82). MS+severeA included persons who had both an anxiety disorder and were taking an anti-anxiety medication (n = 24, age (SD) = 47.0 (12.2), % female = 79).
 
-[clean_dac_pull_icd10_codes_and_make_clean_df_post_replication.R](https://github.com/PennLINC/msanxiety/tree/main/scripts/FINAL_scripts_clean/clean_dac_pull_icd10_codes_and_make_clean_df_post_replication.R)
+[clean_dac_pull_icd10_codes_and_make_clean_df_post_replication.R](https://github.com/Baller-Lab/msanxiety/tree/main/scripts/FINAL_scripts_clean/clean_dac_pull_icd10_codes_and_make_clean_df_post_replication.R)
 
 ### Automated white matter lesion segmentation
 
@@ -143,13 +143,13 @@ For each individual, the MIMoSA binary map was considered a region of interest. 
   
 I was then able to calculate the proportion of the disease in the uncinate fasciculus (i.e. volume of the streamlines that were affected) by summing the # of 1s in the map, meaning the right and left side, and dividing it by the total volume of streamlines in the canonical UF. At the end, each individual had single values that represented the proportion of lesion burden in the UF.
   
-For more details on streamline filtering, please see [https://pennlinc.github.io/msdepression/](https://pennlinc.github.io/msdepression/), published in Baller EB, Sweeney EM, Cieslak M, Robert-Fitzgerald T, Covitz SC, Martin ML, Schindler MK, Bar-Or A, Elahi A, Larsen BS, Manning AR, Markowitz CE, Perrone CM, Rautman V, Seitz MM, Detre JA, Fox MD, Shinohara RT, Satterthwaite TD. Mapping the Relationship of White Matter Lesions to Depression in Multiple Sclerosis. Biol Psychiatry. 2024 Jun 15;95(12):1072-1080. [doi: 10.1016/j.biopsych.2023.11.010](10.1016/j.biopsych.2023.11.010). Epub 2023 Nov 18. PMID: 37981178; PMCID: PMC11101593.
+For more details on streamline filtering, please see [https://Baller-Lab.github.io/msdepression/](https://Baller-Lab.github.io/msdepression/), published in Baller EB, Sweeney EM, Cieslak M, Robert-Fitzgerald T, Covitz SC, Martin ML, Schindler MK, Bar-Or A, Elahi A, Larsen BS, Manning AR, Markowitz CE, Perrone CM, Rautman V, Seitz MM, Detre JA, Fox MD, Shinohara RT, Satterthwaite TD. Mapping the Relationship of White Matter Lesions to Depression in Multiple Sclerosis. Biol Psychiatry. 2024 Jun 15;95(12):1072-1080. [doi: 10.1016/j.biopsych.2023.11.010](10.1016/j.biopsych.2023.11.010). Epub 2023 Nov 18. PMID: 37981178; PMCID: PMC11101593.
 
 ### Final group level analysis
 
 This script is run locally, on R. It does all second level/group data analysis. Main steps summarized below.
 
-[MSAnxiety_manuscript_post_replication_prop_FINAL.Rmd](https://github.com/PennLINC/msanxiety/tree/main/scripts/FINAL_scripts_clean/MSAnxiety_manuscript_FINAL_20240911.Rmd)
+[MSAnxiety_manuscript_post_replication_prop_FINAL.Rmd](https://github.com/Baller-Lab/msanxiety/tree/main/scripts/FINAL_scripts_clean/MSAnxiety_manuscript_FINAL_20240911.Rmd)
 
 
 #### Disease burden summary measures
