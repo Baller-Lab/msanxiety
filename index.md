@@ -6,7 +6,7 @@
 ### Project Lead
 Erica B. Baller
 
-### Senior Faculty Leads
+### Senior Faculty Advisors
 Theodore D. Satterthwaite and Russell T. Shinohara
 
 ### Brief Project Description:
