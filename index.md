@@ -120,7 +120,7 @@ HCP template:
 <br>
 
 ### * Functions for project *
-[ms_functions.R](https://github.com/Baller-Lab/msanxiety/tree/main/scripts/FINAL_scripts_clean/ms_functions.R)
+[ms_functions.R](https://github.com/Baller-Lab/msanxiety/tree/main/scripts/jama_scripts/ms_functions.R)
 
 ### Sample Construction
 
@@ -129,6 +129,21 @@ We first constructed our sample from n=890 individuals who were diagnosed with m
 The following code takes the n=825 sample, and goes through a variety of exclusions to get the final n. Specifically, after excluding 11 participants with poor mimosa quality (23) or streamline filtering (55), 814 participants were eligible for anxiety classification.  Participants with MS were identified from the electronic medical record and stratified into three age- and sex-matched groups: 1) MS without anxiety (MS+noA); 2) MS with mild anxiety (MS+mildA), 3) MS with severe anxiety (MS+severeA). MS+noA included persons who had no psychiatric diagnosis, took no psychiatric medications, and were asymptomatic on PHQ 2/9 (n = 99, age (SD) = 49.4 (11.7), % female = 75). MS+mildA included persons with either a diagnosis of an anxiety disorder (F40*) or a prescription for an anti-anxiety medication (n = 249, age (SD) = 47.1 (11.1), % female = 82). MS+severeA included persons who had both an anxiety disorder and were taking an anti-anxiety medication (n = 24, age (SD) = 47.0 (12.2), % female = 79).
 
 [clean_dac_pull_icd10_codes_and_make_clean_df_post_replication.R](https://github.com/Baller-Lab/msanxiety/tree/main/scripts/FINAL_scripts_clean/clean_dac_pull_icd10_codes_and_make_clean_df_post_replication.R)
+
+
+### Brain segmentation
+
+To obtain a measure of total brain volume (minus CSF), I used FSL's fast on all T1w images (post n4 and ws). I then summed the grey matter and white matter volume to create a measure of total brain volume (total_volume).
+
+Wrapper script
+[get_fast_total_brain_volume_all_subjs.sh](https://github.com/Baller-Lab/msanxiety/tree/main/scripts/jama_scripts/get_fast_total_brain_volume_all_subjs.sh)
+
+Segmentation script
+[make_fast_files_single_subj_pmacs.sh](https://github.com/Baller-Lab/msanxiety/tree/main/scripts/jama_scripts/make_fast_files_single_subj_pmacs.sh)
+
+Volume calculation script
+[make_fast_volume_csv.sh](https://github.com/Baller-Lab/msanxiety/tree/main/scripts/jama_scripts/make_fast_volume_csv.sh)
+
 
 ### Automated white matter lesion segmentation
 
@@ -149,7 +164,7 @@ For more details on streamline filtering, please see [https://pennlinc.github.io
 
 This script is run locally, on R. It does all second level/group data analysis. Main steps summarized below.
 
-[MSAnxiety_manuscript_post_replication_prop_FINAL.Rmd](https://github.com/Baller-Lab/msanxiety/tree/main/scripts/FINAL_scripts_clean/MSAnxiety_manuscript_FINAL_20240911.Rmd)
+[MSAnxiety_manuscript_post_replication_prop_FINAL.Rmd](https://github.com/Baller-Lab/msanxiety/tree/main/scripts/jama_scripts/MSAnxiety_manuscript_JAMA_revision_20250123_FINAL.Rmd)
 
 
 #### Disease burden summary measures
@@ -157,25 +172,27 @@ I wanted to look specifically at mean disease burden in uncinate fasiculus, give
     
 #### Main effect of Diagnosis
 
-A gam with mean_UF_vol as dependent variable, modeling main effect of anxiety diagnosis (MS+noA vs MS+severeA), with sex and spline of age as covariates.
+A gam with mean_UF_vol as dependent variable, modeling main effect of anxiety diagnosis (MS+noA vs MS+severeA), with sex, total brain volume, and spline of age as covariates.
      
-     gam(mean_UF_vol ~ Diagnosis + osex+s(PAT_AGE_AT_EXAM, k = 4, fx = F), data = uncinate_by_dx_df)
+     gam(mean_UF_vol ~ Diagnosis + osex+s(PAT_AGE_AT_EXAM, k = 4, fx = F)+ total_volume, data = uncinate_by_dx_df)
 
 #### Parametric effect of anxiety "dose"
 
 A gam with mean_UF_vol as dependent variable, modeling main effect of anxiety dose (dose = 0 (MS+nA), 1 (MS+mildA), or 2 (MS+severeA)), with sex and spline of age as covariates.
      
-     gam(mean_UF_vol ~ anxiety_dose + osex + s(PAT_AGE_AT_EXAM, k = 4, fx = F), data=df_demo_and_fascicles_no_unclass_anxiety_dose)
+     gam(mean_UF_vol ~ anxiety_dose + osex + s(PAT_AGE_AT_EXAM, k = 4, fx = F)+ total_volume, data=df_demo_and_fascicles_no_unclass_anxiety_dose)
 
 #### Sensitivity analyses
 As a comparison, I also looked specifically at fornix, which is another subcortical fiber connecting prefrontal and medial temporal lobe (anterior cingulate/hippocampus), primarily involved in cognition/memory, rather than anxiety (N.S.) 
 
-     gam(mean_fornix_volume ~ anxiety_dose + osex + s(PAT_AGE_AT_EXAM, k = 4, fx = F), data=df_demo_and_fascicles_no_unclass_anxiety_dose)
+     gam(mean_fornix_volume ~ anxiety_dose + osex + s(PAT_AGE_AT_EXAM, k = 4, fx = F)+ total_volume, data=df_demo_and_fascicles_no_unclass_anxiety_dose)
 
 To test whether this was specific to anxiety diagnosis and did not simply reflect general internalizing symptoms, I also evaluated mean uncinate volume in patients with MS+Depression (199) or MS+noDep (99) in this cohort (N.S.) 
      
-     gam(mean_UF_vol ~ depDiagnosis + osex + s(PAT_AGE_AT_EXAM, k=4, fx=F), data = df_dep)
+     gam(mean_UF_vol ~ depDiagnosis + osex + s(PAT_AGE_AT_EXAM, k=4, fx=F)+ total_volume, data = df_dep)
 
+I also evaluated whether lesion volume was associated with anxiety diagnosis, severity, and depression, and all were significant, suggesting that total lesion volume is associated with general psychopathology.
 
+     gam(volume_of_mimosa_lesions ~ (depDiagnosis|Diagnosis|anxiety_dose) + osex + s(PAT_AGE_AT_EXAM, k=4, fx=F)+ total_volume, data=(df_dep|uncinate_by_dx_df|df_demo_and_fascicles_no_unclass_anxiety_dose)) 
 
 
