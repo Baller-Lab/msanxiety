@@ -135,13 +135,13 @@ The following code takes the n=825 sample, and goes through a variety of exclusi
 
 To obtain a measure of total brain volume (minus CSF), I used FSL's fast on all T1w images (post n4 and ws). I then summed the grey matter and white matter volume to create a measure of total brain volume (total_volume).
 
-Wrapper script
+Wrapper script:
 [get_fast_total_brain_volume_all_subjs.sh](https://github.com/Baller-Lab/msanxiety/tree/main/scripts/jama_scripts/get_fast_total_brain_volume_all_subjs.sh)
 
-Segmentation script
+Segmentation script:
 [make_fast_files_single_subj_pmacs.sh](https://github.com/Baller-Lab/msanxiety/tree/main/scripts/jama_scripts/make_fast_files_single_subj_pmacs.sh)
 
-Volume calculation script
+Volume calculation script:
 [make_fast_volume_csv.sh](https://github.com/Baller-Lab/msanxiety/tree/main/scripts/jama_scripts/make_fast_volume_csv.sh)
 
 
