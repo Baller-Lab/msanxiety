@@ -164,7 +164,7 @@ For more details on streamline filtering, please see [https://pennlinc.github.io
 
 This script is run locally, on R. It does all second level/group data analysis. Main steps summarized below.
 
-[MSAnxiety_manuscript_post_replication_prop_FINAL.Rmd](https://github.com/Baller-Lab/msanxiety/tree/main/scripts/jama_scripts/MSAnxiety_manuscript_JAMA_revision_20250123_FINAL.Rmd)
+[MSAnxiety_manuscript_FINAL.Rmd](https://github.com/Baller-Lab/msanxiety/tree/main/scripts/jama_scripts/MSAnxiety_manuscript_JAMA_revision_20250123_FINAL.Rmd)
 
 
 #### Disease burden summary measures
